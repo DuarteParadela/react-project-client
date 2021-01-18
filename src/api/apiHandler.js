@@ -44,9 +44,88 @@ export default {
       .catch(errorHandler);
   },
 
-  getItems() {
+  getUserInfos() {
     return service
-      .get("/api/items")
+      .get("/users/me")
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
+  removeUser(userId) {
+    return service
+      .delete(`api/users/${userId}`)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
+  updateUser(data) {
+    return service
+      .patch("/users/me", data)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
+  createDemand(data) {
+    return service
+      .post("/api/demands", data)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
+  // Get all demands. FOR THE ADMIN
+  getDemands() {
+    return service
+      .get("/api/demands")
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
+  removeDemand(demandId) {
+    return service
+      .delete(`api/demands/${demandId}`)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
+  updateDemand(demandId, data) {
+    return service
+      .patch(`api/demands/${demandId}`, data)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
+  getDemandsByUser() {
+    return service
+      .get(`api/demands/mydemands`)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
+  createHome(data) {
+    return service
+      .post("/api/homes", data)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
+  // Get all homes. FOR THE ADMIN
+  getHomes() {
+    return service
+      .get("/api/homes")
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
+  removeHome(homeId) {
+    return service
+      .delete(`api/homes/${homeId}`)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
+  updateHome(data) {
+    return service
+      .patch("api/homes/me", data)
       .then((res) => res.data)
       .catch(errorHandler);
   },

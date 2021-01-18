@@ -35,6 +35,26 @@ const NavMain = (props) => {
               Profile{/* {context.user && context.user.email} */}
                 </NavLink>
             </li>
+            <li>
+              <NavLink to="/request">
+              Make a request
+                </NavLink>
+            </li>
+            <li>
+              <NavLink to="/myrequests">
+              My requests
+                </NavLink>
+            </li>
+            <li>
+              <NavLink to="/becomesafehome">
+              Become a Safe Home
+                </NavLink>
+            </li>
+            <li>
+              <NavLink to="/safehomes">
+              Safe homes
+                </NavLink>
+            </li>
         {context.isLoggedIn && (
           <React.Fragment>
             

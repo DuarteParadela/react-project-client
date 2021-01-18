@@ -1,0 +1,24 @@
+.cardDemand {
+  padding: 10px;
+  margin: 15px 0;
+}
+
+.cardDemand p {
+  padding: 5px;
+}
+
+.card-pending {
+  background-color: orange;
+}
+
+.card-validated {
+  background-color: green;
+}
+
+.card-rejected {
+  background-color: red;
+}
+
+.card-closed {
+  background-color: grey;
+}

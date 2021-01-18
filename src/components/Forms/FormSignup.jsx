@@ -1,26 +1,22 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
-import { UserContext } from "./UserContext";
+import { Link, Redirect } from "react-router-dom";
+import UserContext from "../Auth/UserContext";
 import apiHandler from "../../api/apiHandler";
+import "../../styles/form.css";
 
 class FormSignup extends Component {
   static contextType = UserContext;
-
-  state = {
-    email: "",
-    password: "",
-  };
+  state = {};
 
   handleChange = (event) => {
+    console.log(event.target);
     const value = event.target.value;
     const key = event.target.name;
-
     this.setState({ [key]: value });
   };
 
   handleSubmit = (event) => {
     event.preventDefault();
-
     apiHandler
       .signup(this.state)
       .then((data) => {
@@ -32,32 +28,111 @@ class FormSignup extends Component {
   };
 
   render() {
-    if (this.context.user) {
+    if (this.context.isLoggedIn) {
+      // This logic is the same as in the <ProtectedRoute /> component
+      // Here this is handled within the component, if there are some views
+      // that are not meant to be rendered to a logged in user,
+      // you could make a generic component out of it, just like <ProtectedRoute />
+      // and instead of checking if the user is not logged in, check if the user is logged in
+      // and redirect him to whatever page you want, in the case below: the home page.
       return <Redirect to="/" />;
     }
 
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label htmlFor="email">Email</label>
-        <input
+      <section className="form-section">
+        <header className="header">
+          <h1>
+            Hello
+            <span role="img" aria-label="hand">
+              👋
+            </span>
+          </h1>
+        </header>
+
+        <form
+          autoComplete="off"
+          className="form"
           onChange={this.handleChange}
-          value={this.state.email}
-          type="email"
-          id="email"
-          name="email"
-        />
-        <label htmlFor="password">Password</label>
-        <input
-          onChange={this.handleChange}
-          value={this.state.password}
-          type="password"
-          id="password"
-          name="password"
-        />
-        <button>Submit</button>
-      </form>
+          onSubmit={this.handleSubmit}
+        >
+          <h2>Create account</h2>
+
+          <div className="form-group">
+            <label className="label" htmlFor="firstName">
+              First name
+            </label>
+            <input
+              className="input"
+              id="firstName"
+              type="text"
+              name="firstName"
+            />
+          </div>
+
+          <div className="form-group">
+            <label className="label" htmlFor="lastName">
+              Last Name
+            </label>
+            <input
+              className="input"
+              id="lastName"
+              type="text"
+              name="lastName"
+            />
+          </div>
+          <div className="form-group">
+            <label className="label" htmlFor="age">
+              How old are you
+            </label>
+            <input
+              className="input"
+              id="age"
+              type="date"
+              name="age"
+            />
+          </div>
+
+          <div className="form-group">
+            <label className="label" htmlFor="email">
+              Email
+            </label>
+            <input className="input" id="email" type="email" name="email" />
+          </div>
+          <div className="form-group">
+            
+            <label className="label" htmlFor="number">
+              What is your phone number ?
+            </label>
+            <input
+              className="input"
+              id="number"
+              type="text"
+              name="phoneNumber"
+            />
+          </div>
+          
+          <div className="form-group">
+            <label className="label" htmlFor="password">
+              Password
+            </label>
+            <input
+              className="input"
+              id="password"
+              type="password"
+              name="password"
+            />
+          </div>
+
+          <button className="btn-submit">Let's go!</button>
+        </form>
+
+        <div className="form-section link">
+          <p>Already have an account? </p>
+          <Link to="/signin">Log in</Link>
+        </div>
+      </section>
     );
   }
 }
 
-export default withRouter(FormSignup);
+export default FormSignup;

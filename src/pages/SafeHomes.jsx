@@ -3,11 +3,11 @@ import { Link } from "react-router-dom"
 import apiHandler from '../api/apiHandler';
 import UserContext from '../components/Auth/UserContext'
 import withUser from '../components/Auth/withUser'
-import CardDemands from '../components/Cards/CardDemands'
+import CardHomes from '../components/Cards/CardHomes'
 import "../styles/adminDashboard.css"
 
 
-class AdminDashboard extends Component {
+class SafeHomes extends Component {
     static contextType = UserContext;
 
     state = {
@@ -20,31 +20,36 @@ class AdminDashboard extends Component {
         this.fetchHomes()
     }
 
+    fetchHomes = () => {
+        apiHandler.getHomes().then((data) => {
+            this.setState({homes: data})
+        })
+    }
+
     fetchDemands = () => {
         apiHandler.getDemands().then((data) => {
             this.setState({demands: data})
         })
     }
 
+    fetchPendingDemands = () => {
+       return this.state.demands.filter(demand => demand.status === "Pending")
+    }
+
     handleChangeStatus = (demandId, status) => {
         apiHandler.updateDemand(demandId, {status}).then(() => {
-            this.fetchDemands()
+            this.fetchHomes()
         })
     }
 
-    fetchHomes = () => {
-        apiHandler.getHomes().then((data) => {
-            this.setState({homes: data})
-        })
-    }
     render() {
-        const { demands } = this.state;
-        
+        const { homes } = this.state;
+        console.log(this.fetchPendingDemands());
         return (
             <div className= "cardsContainer">
                 <div className="container">
-                    {demands.map((demand) => {
-                        return <CardDemands key={demand._id} handleChangeStatus={this.handleChangeStatus} {...demand} />
+                    {homes.map((home) => {
+                        return <CardHomes key={home._id} handleChangeStatus={this.handleChangeStatus} demands={this.fetchPendingDemands()}{...home} />
                     })}
                 </div> 
             </div>
@@ -53,4 +58,4 @@ class AdminDashboard extends Component {
 }
 
 
-export default AdminDashboard
+export default SafeHomes
