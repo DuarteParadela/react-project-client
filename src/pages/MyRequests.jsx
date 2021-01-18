@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from "react-router-dom"
 import apiHandler from '../api/apiHandler';
 import CardMyDemands from '../components/Cards/CardMyDemands'
+import "../styles/adminDashboard.css"
 
 class MyDemands extends Component {
 
@@ -20,11 +21,13 @@ class MyDemands extends Component {
 
     const { demands } = this.state;
         return (
-            <div>
-                {demands.map((demand)=> {
-                  return  <p key={demand._id}>{demand.status}</p>
+            <div className= "cardsContainer">
+            <div className="container">
+                {demands.map((demand) => {
+                    return <CardMyDemands key={demand._id} handleChangeStatus={this.handleChangeStatus} {...demand} />
                 })}
-            </div>
+            </div> 
+        </div>
         )
     }
 }

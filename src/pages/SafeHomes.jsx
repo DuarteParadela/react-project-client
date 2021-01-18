@@ -44,7 +44,6 @@ class SafeHomes extends Component {
 
     render() {
         const { homes } = this.state;
-        console.log(this.fetchPendingDemands());
         return (
             <div className= "cardsContainer">
                 <div className="container">

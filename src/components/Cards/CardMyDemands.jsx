@@ -1,4 +1,4 @@
-import React,  { useState } from "react";
+import React from "react";
 import Button from "../Button";
 import "../../styles/cardInfos.css";
 import  "../../styles/cardDemands.css"
@@ -17,19 +17,13 @@ const CardMyDemands = ({
   context,
   
 }) => {
-  const [isSelectShown, toggleIsSelectShown] = useState(false)
-  
- const hideSelect = () => {
-   toggleIsSelectShown(false)
- }
 
  const handleChange = (status) => {
-   hideSelect()
    handleChangeStatus(_id, status)
  }
 
   return (
-    <div  className={`cardDemand card-${status.toLowerCase() || ""}`}>
+    <div  className= "cardDemand">
         
             <p>Number of children: {numOfChildren}</p>
             <p>Number of animals: {numOfAnimals}</p>
@@ -38,8 +32,12 @@ const CardMyDemands = ({
             <p>Temporary zipcode: {tempZipCode}</p>
             <p>Additional information: {additionalInformation}</p>
             <p>Status: {status}</p>
-        
+            <Button>Edit</Button>
+            <Button>Delete</Button>
       </div>
+      
+      
+
   );
 };
 

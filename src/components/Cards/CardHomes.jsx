@@ -36,6 +36,10 @@ const CardHomes = ({
    handleChangeStatus(_id, status)
  }
 
+ const assignRequest = () => {
+   console.log('Hey');
+ }
+
   return (
     <div  className={`cardHomes`}>
         
@@ -68,7 +72,7 @@ const CardHomes = ({
                 })}
                 
               </select>
-              <Button>Confirm</Button>
+              <Button handleClick={assignRequest}>Confirm</Button>
               <Button handleClick={hideSelect}>Cancel</Button>
             </>
           )}

@@ -20,20 +20,9 @@ const CardDemands = ({
   status,
   _id,
   image,
-  handleChangeStatus,
   context,
   
 }) => {
-  const [isSelectShown, toggleIsSelectShown] = useState(false)
-  
- const hideSelect = () => {
-   toggleIsSelectShown(false)
- }
-
- const handleChange = (status) => {
-   hideSelect()
-   handleChangeStatus(_id, status)
- }
 
   return (
     <div  className={`cardDemand card-${status.toLowerCase() || ""}`}>
@@ -54,26 +43,8 @@ const CardDemands = ({
 
       
         <div className="buttons">
-        <Button handleClick={() => toggleIsSelectShown(true) } primary>
-            Select safe home
-          </Button>
-          {isSelectShown && (
-            <>
-              <select name="pets" id="pet-select">
-                <option value="">--Select home--</option>
-                <option value="dog">Dog</option>
-                <option value="cat">Cat</option>
-              </select>
-              <Button>Confirm</Button>
-              <Button handleClick={hideSelect}>Cancel</Button>
-            </>
-          )}
-          
-          <Button handleClick={() => handleChange('Closed')} secondary>
-            Close
-          </Button>
-          <Button handleClick={() => handleChange('Rejected')} primary>
-            Reject
+        <Button >
+            <a href="/safehomes">Select a safe home</a>
           </Button>
         </div>
       </div>

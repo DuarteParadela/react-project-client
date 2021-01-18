@@ -30,11 +30,16 @@ const NavMain = (props) => {
                 Dashboard
                 </NavLink>
             </li>
-            <li>
+            
+              {context.isLoggedIn && (
+              <>
+              <li>
               <NavLink to="/profile">
-              Profile{/* {context.user && context.user.email} */}
+             {context.user && context.user.firstName}
                 </NavLink>
             </li>
+            </>
+    )}
             <li>
               <NavLink to="/request">
               Make a request
