@@ -21,6 +21,7 @@ const CardDemands = ({
   _id,
   image,
   context,
+  handleChangeStatus
   
 }) => {
 
@@ -46,6 +47,10 @@ const CardDemands = ({
         <Button >
             <a href="/safehomes">Select a safe home</a>
           </Button>
+        
+        <Button handleClick={() => handleChangeStatus(_id, 'Closed')}>Close</Button>
+        <Button handleClick={() => handleChangeStatus(_id, 'Rejected')}>Reject</Button>
+        <Button handleClick={() => handleChangeStatus(_id, 'Pending')}>Re-open</Button>
         </div>
       </div>
   );
