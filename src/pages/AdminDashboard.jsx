@@ -26,9 +26,12 @@ class AdminDashboard extends Component {
         })
     }
 
-    handleChangeStatus = (demandId, status) => {
-        apiHandler.updateDemand(demandId, {status}).then(() => {
-            this.fetchDemands()
+    handleChangeStatus = (demandId, status, id_home) => {
+        apiHandler.updateDemand(demandId, {status, id_home: null}).then(() => {
+            apiHandler.updateHome(id_home, {isAvailable: true}).then(() => {
+                this.fetchDemands()
+            })  
+            
         })
     }
 

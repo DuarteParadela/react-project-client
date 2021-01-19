@@ -123,9 +123,16 @@ export default {
       .catch(errorHandler);
   },
 
-  updateHome(data) {
+  updateUserHome(data) {
     return service
-      .patch("api/homes/me", data)
+      .patch("api/homes/myhome", data)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
+  updateHome(homeId, data) {
+    return service
+      .patch(`api/homes/${homeId}`, data)
       .then((res) => res.data)
       .catch(errorHandler);
   },

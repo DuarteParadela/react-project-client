@@ -11,6 +11,7 @@ const CardDemands = ({
       age,
       email
   },
+  id_home,
   numOfChildren,
   numOfAnimals,
   tempAddress,
@@ -48,9 +49,10 @@ const CardDemands = ({
             <a href="/safehomes">Select a safe home</a>
           </Button>
         
-        <Button handleClick={() => handleChangeStatus(_id, 'Closed')}>Close</Button>
-        <Button handleClick={() => handleChangeStatus(_id, 'Rejected')}>Reject</Button>
-        <Button handleClick={() => handleChangeStatus(_id, 'Pending')}>Re-open</Button>
+        {status !== 'Closed' ? <Button handleClick={() => handleChangeStatus(_id, 'Closed', id_home)}>Close</Button> : null}
+        {status !== 'Rejected' ?  <Button handleClick={() => handleChangeStatus(_id, 'Rejected', id_home)}>Reject</Button> : null}
+        {status !== 'Pending' ? <Button handleClick={() => handleChangeStatus(_id, 'Pending', id_home)}>Re-open</Button> : null}
+        
         </div>
       </div>
   );

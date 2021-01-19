@@ -18,26 +18,28 @@ const CardHomes = ({
   acceptsAnimals,
   size,
   numOfRooms,
+  isAvailable,
   _id,
   image,
-  handleChangeStatus,
+  handleChange,
   context,
   demands
   
 }) => {
   const [isSelectShown, toggleIsSelectShown] = useState(false)
+  const [selectValue, setSelectValue] = useState()
   
  const hideSelect = () => {
    toggleIsSelectShown(false)
  }
 
- const handleChange = (status) => {
-   hideSelect()
-   handleChangeStatus(_id, status)
+ const handleChangeDemand = ({ target: { value }}) => {
+   setSelectValue(value)
  }
 
  const assignRequest = () => {
-   console.log('Hey');
+  handleChange(selectValue, 'Validated', _id)
+
  }
 
   return (
@@ -48,13 +50,14 @@ const CardHomes = ({
             <p>Phone number: {phoneNumber}</p>
             <p>Email: {email}</p>
             <p>Age: {age}</p>
-            <p>Accepts children: {acceptsChildren}</p>
-            <p>Accepts animals: {acceptsAnimals}</p>
+            <p>Accepts children: {acceptsChildren ? "true" : "false"}</p>
+            <p>Accepts animals: {acceptsAnimals ? "true" : "false"}</p>
             <p>Address : {address}</p>
             <p>City: {city}</p>
             <p>Zipcode: {zipCode}</p>
             <p>Size: {size}</p>
             <p>Number of rooms: {numOfRooms}</p>
+            <p>Is available:{isAvailable ? "true" : "false"}</p>
         
 
       
@@ -64,10 +67,10 @@ const CardHomes = ({
           </Button>
           {isSelectShown && (
             <>
-              <select name="pets" id="pet-select">
-                <option value="">--Select user--</option>
+              <select value={selectValue} onChange={handleChangeDemand} name="pets" id="pet-select">
+                <option value="">--Select request--</option>
                 {demands.map((demand) => {
-                  console.log(demand);
+                  
                   return <option key={demand._id} value={demand._id}>{demand.id_user.firstName} {demand.id_user.lastName}</option>
                 })}
                 

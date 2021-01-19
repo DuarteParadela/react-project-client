@@ -16,6 +16,12 @@ class MyDemands extends Component {
        
         })
     }
+
+    deleteDemand = (id) => {
+        apiHandler.removeDemand().then((data) => {
+            this.setState({demands: data})
+        })
+    }
     
     render() {
 

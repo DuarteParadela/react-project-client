@@ -26,6 +26,12 @@ class SafeHomes extends Component {
         })
     }
 
+    getAvailableHomes = () => {
+      return this.state.homes.filter(home => home.isAvailable === true)
+      
+    }
+;
+
     fetchDemands = () => {
         apiHandler.getDemands().then((data) => {
             this.setState({demands: data})
@@ -36,9 +42,11 @@ class SafeHomes extends Component {
        return this.state.demands.filter(demand => demand.status === "Pending")
     }
 
-    handleChangeStatus = (demandId, status) => {
-        apiHandler.updateDemand(demandId, {status}).then(() => {
-            this.fetchHomes()
+    handleChange = (demandId, status, id_home) => {
+        apiHandler.updateDemand(demandId, {status, id_home}).then(() => {
+            apiHandler.updateHome(id_home, {isAvailable: false}).then(() => {
+                this.fetchHomes()
+            })  
         })
     }
 
@@ -47,8 +55,8 @@ class SafeHomes extends Component {
         return (
             <div className= "cardsContainer">
                 <div className="container">
-                    {homes.map((home) => {
-                        return <CardHomes key={home._id} handleChangeStatus={this.handleChangeStatus} demands={this.fetchPendingDemands()}{...home} />
+                    {this.getAvailableHomes().map((home) => {
+                        return <CardHomes key={home._id} handleChange={this.handleChange} demands={this.fetchPendingDemands()}{...home} />
                     })}
                 </div> 
             </div>
