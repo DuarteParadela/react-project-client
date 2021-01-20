@@ -10,6 +10,8 @@ import Request from "./pages/Request";
 import MyRequests from "./pages/MyRequests";
 import BecomeSafeHome from "./pages/BecomeSafeHome";
 import SafeHomes from "./pages/SafeHomes";
+import MyHome from "./pages/MyHome";
+import ProtectedRoute from "./components/ProtectedRoute";
 import "./App.css";
 
 function App() {
@@ -18,14 +20,15 @@ function App() {
       <NavMain />
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/dashboard" component={AdminDashboard} />
+        <ProtectedRoute exact path="/dashboard" component={AdminDashboard} />
         <Route exact path="/profile" component={Profile} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/signin" component={Signin} />
         <Route exact path="/request" component={Request} />
         <Route exact path="/myrequests" component={MyRequests} />
         <Route exact path="/becomesafehome" component={BecomeSafeHome} />
-        <Route exact path="/safehomes" component={SafeHomes} />
+        <ProtectedRoute exact path="/safehomes" component={SafeHomes} />
+        <Route exact path="/myhome" component={MyHome} />
       </Switch>
     </div>
   );

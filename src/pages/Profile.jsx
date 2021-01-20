@@ -9,22 +9,12 @@ import "../styles/Profile.css";
 
 
 export default class Profile extends Component {
-    state = {
-        firstName: "",
-        lastName: "",
-        email: "",
-
-    }
-
-    componentDidMount() {
-        apiHandler.getUserInfos().then((data) => {
-          this.setState({ userInfos: data });
-        });
-      }
+    
     
     render() {
         return (
             <div>
+                
                 <CardInfos/>
             </div>
         )

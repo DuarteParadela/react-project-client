@@ -58,8 +58,6 @@ const CardHomes = ({
             <p>Size: {size}</p>
             <p>Number of rooms: {numOfRooms}</p>
             <p>Is available:{isAvailable ? "true" : "false"}</p>
-        
-
       
         <div className="buttons">
         <Button handleClick={() => toggleIsSelectShown(true) } primary>
@@ -70,7 +68,6 @@ const CardHomes = ({
               <select value={selectValue} onChange={handleChangeDemand} name="pets" id="pet-select">
                 <option value="">--Select request--</option>
                 {demands.map((demand) => {
-                  
                   return <option key={demand._id} value={demand._id}>{demand.id_user.firstName} {demand.id_user.lastName}</option>
                 })}
                 

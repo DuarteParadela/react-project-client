@@ -44,12 +44,12 @@ export default {
       .catch(errorHandler);
   },
 
-  getUserInfos() {
-    return service
-      .get("/users/me")
-      .then((res) => res.data)
-      .catch(errorHandler);
-  },
+  // getUserInfos() {
+  //   return service
+  //     .get("/users/me")
+  //     .then((res) => res.data)
+  //     .catch(errorHandler);
+  // },
 
   removeUser(userId) {
     return service
@@ -60,7 +60,7 @@ export default {
 
   updateUser(data) {
     return service
-      .patch("/users/me", data)
+      .patch("/api/users", data)
       .then((res) => res.data)
       .catch(errorHandler);
   },
@@ -116,6 +116,13 @@ export default {
       .catch(errorHandler);
   },
 
+  getHomesByUser() {
+    return service
+      .get("/api/homes/myhomes")
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
   removeHome(homeId) {
     return service
       .delete(`api/homes/${homeId}`)
@@ -125,7 +132,7 @@ export default {
 
   updateUserHome(data) {
     return service
-      .patch("api/homes/myhome", data)
+      .patch("api/homes/myhomes", data)
       .then((res) => res.data)
       .catch(errorHandler);
   },

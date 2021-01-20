@@ -11,17 +11,23 @@ class MyDemands extends Component {
     }
 
     componentDidMount() {
+       this.fetchDemandsByUser()
+    }
+
+    fetchDemandsByUser = () => {
         apiHandler.getDemandsByUser().then((data) => {
             this.setState({demands: data})
-       
         })
     }
 
-    deleteDemand = (id) => {
-        apiHandler.removeDemand().then((data) => {
-            this.setState({demands: data})
+    
+    handleDelete = (demandId) => {
+        apiHandler.removeDemand(demandId).then(() => {
+            this.fetchDemandsByUser()
+        }).catch((error) => {
+          console.log(error);
         })
-    }
+      }
     
     render() {
 
@@ -30,7 +36,7 @@ class MyDemands extends Component {
             <div className= "cardsContainer">
             <div className="container">
                 {demands.map((demand) => {
-                    return <CardMyDemands key={demand._id} handleChangeStatus={this.handleChangeStatus} {...demand} />
+                    return <CardMyDemands key={demand._id} handleDelete={this.handleDelete} {...demand} />
                 })}
             </div> 
         </div>

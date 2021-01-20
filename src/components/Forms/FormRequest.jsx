@@ -30,8 +30,7 @@ class FormRequest extends Component {
 
     apiHandler
       .createDemand(this.state)
-      .then((data) => {
-        this.context.setUser(data); 
+      .then(() => {
         this.props.history.push("/myrequests")// update the context
       })
       .catch((error) => {
@@ -54,7 +53,7 @@ class FormRequest extends Component {
           <div className="form-group">
             
             <label className="label" htmlFor="children">
-              Are you accompanied by children?
+              How many children are with you?
             </label>
             <input
               onChange={this.handleChange}
@@ -63,12 +62,13 @@ class FormRequest extends Component {
               id="children"
               type="number"
               name="numOfChildren"
+              required
             />
           </div>
           <div className="form-group">
             
             <label className="label" htmlFor="animals">
-              Are you accompanied by animals?
+            How many animals are with you?
             </label>
             <input
               onChange={this.handleChange}
@@ -77,6 +77,7 @@ class FormRequest extends Component {
               id="animals"
               type="number"
               name="numOfAnimals"
+              required
             />
           </div>
           <div className="form-group">
@@ -91,6 +92,7 @@ class FormRequest extends Component {
               id="address"
               type="text"
               name="tempAddress"
+              required
             />
              <label className="label" htmlFor="zipcode">
               Zip Code
@@ -102,6 +104,7 @@ class FormRequest extends Component {
               id="zipcode"
               type="text"
               name="tempZipCode"
+              
             />
              <label className="label" htmlFor="city">
               City
@@ -113,6 +116,7 @@ class FormRequest extends Component {
               id="city"
               type="text"
               name="tempCity"
+              required
             />
           </div>
           

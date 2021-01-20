@@ -1,12 +1,17 @@
 import React from "react";
 import { Redirect, Route } from "react-router-dom";
-import { withUser } from "./Forms/withUser";
+import withUser  from "./Auth/withUser";
 
 const ProtectedRoute = ({ component: Component, context, ...rest }) => {
   if (context.isLoading) {
     return null;
   } else if (context.isLoggedIn) {
-    return <Route {...rest} render={(props) => <Component {...props} />} />;
+      if (context.user.isAdmin) {
+        return <Route {...rest} render={(props) => <Component {...props} />} />;
+      } else {
+        return <Redirect to="/" />
+      }
+    
   } else {
     return <Redirect to="/signin" />;
   }

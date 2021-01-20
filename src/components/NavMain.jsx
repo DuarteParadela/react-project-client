@@ -25,22 +25,21 @@ const NavMain = (props) => {
         <h3 className="logo">Safe Home</h3>
       </NavLink>
       <ul className="nav-list">
+        {context.isLoggedIn && context.user.isAdmin && (
+          <li>
+            <NavLink to="/dashboard">
+              Dashboard
+            </NavLink>
+          </li>   
+        )}
+    {context.isLoggedIn && (
+      <>
       <li>
-              <NavLink to="/dashboard">
-                Dashboard
-                </NavLink>
-            </li>
-            
-              {context.isLoggedIn && (
-              <>
-              <li>
-              <NavLink to="/profile">
-             {context.user && context.user.firstName}
-                </NavLink>
-            </li>
-            </>
-    )}
-            <li>
+        <NavLink to="/profile">
+        {context.user && context.user.firstName}
+          </NavLink>
+      </li>
+      <li>
               <NavLink to="/request">
               Make a request
                 </NavLink>
@@ -56,10 +55,22 @@ const NavMain = (props) => {
                 </NavLink>
             </li>
             <li>
+              <NavLink to="/myhome">
+              My home
+                </NavLink>
+            </li>
+      </>
+    )}
+            {context.isLoggedIn && context.user.isAdmin && (
+          
+            <li>
               <NavLink to="/safehomes">
               Safe homes
                 </NavLink>
             </li>
+        )}
+            
+            
         {context.isLoggedIn && (
           <React.Fragment>
             

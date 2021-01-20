@@ -30,9 +30,8 @@ class FormRequest extends Component {
 
     apiHandler
       .createHome(this.state)
-      .then((data) => {
-        this.context.setUser(data); 
-        this.props.history.push("/")// update the context
+      .then(() => {
+        this.props.history.push("/myhome")// update the context
       })
       .catch((error) => {
         console.log(error);
@@ -63,6 +62,7 @@ class FormRequest extends Component {
               id="address"
               type="text"
               name="address"
+              required
             />
             <label className="label" htmlFor="city">
               City
@@ -74,6 +74,7 @@ class FormRequest extends Component {
               id="city"
               type="text"
               name="city"
+              required
             />
             <label className="label" htmlFor="zipCode">
               Zipcode
@@ -85,6 +86,7 @@ class FormRequest extends Component {
               id="zipCode"
               type="text"
               name="zipCode"
+              required
             />
           </div>
           <div className="form-group">
@@ -99,6 +101,7 @@ class FormRequest extends Component {
               id="size"
               type="number"
               name="size"
+              required
             />
              <label className="label" htmlFor="rooms">
               How many rooms does it have ?
@@ -110,6 +113,7 @@ class FormRequest extends Component {
               id="rooms"
               type="number"
               name="numOfRooms"
+              required
             />
           </div>
 
@@ -126,7 +130,10 @@ class FormRequest extends Component {
               className="input"
               id="checkboxChildren"
               type="checkbox"
-              name="acceptsChildren"/>
+              name="acceptsChildren"
+              required
+              />
+              
               <label className="label" htmlFor="acceptsChildren">I can welcome children</label>
             
 
@@ -143,6 +150,7 @@ class FormRequest extends Component {
               id="checkboxAnimals"
               type="checkbox"
               name="acceptsAnimals"
+              required
             />
             <label className="label" htmlFor="acceptsAnimals">I can welcome animals</label>
            
@@ -162,6 +170,7 @@ class FormRequest extends Component {
               type="text"
               name="AdditionalInformation"
               placeholder="Special needs, regular visits, etc"
+              
             />
           </div>
 

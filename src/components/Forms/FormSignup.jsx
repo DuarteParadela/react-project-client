@@ -9,7 +9,6 @@ class FormSignup extends Component {
   state = {};
 
   handleChange = (event) => {
-    console.log(event.target);
     const value = event.target.value;
     const key = event.target.name;
     this.setState({ [key]: value });
@@ -66,6 +65,7 @@ class FormSignup extends Component {
               id="firstName"
               type="text"
               name="firstName"
+              required
             />
           </div>
 
@@ -78,6 +78,7 @@ class FormSignup extends Component {
               id="lastName"
               type="text"
               name="lastName"
+              required
             />
           </div>
           <div className="form-group">
@@ -89,6 +90,7 @@ class FormSignup extends Component {
               id="age"
               type="date"
               name="age"
+              required
             />
           </div>
 
@@ -96,7 +98,9 @@ class FormSignup extends Component {
             <label className="label" htmlFor="email">
               Email
             </label>
-            <input className="input" id="email" type="email" name="email" />
+            <input className="input" id="email" type="email" name="email" 
+            required
+            />
           </div>
           <div className="form-group">
             
@@ -108,6 +112,7 @@ class FormSignup extends Component {
               id="number"
               type="text"
               name="phoneNumber"
+              required
             />
           </div>
           
@@ -120,6 +125,7 @@ class FormSignup extends Component {
               id="password"
               type="password"
               name="password"
+              required
             />
           </div>
 

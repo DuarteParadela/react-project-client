@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Button from "../Button";
 import "../../styles/cardInfos.css";
-import  "../../styles/cardDemands.css"
 import apiHandler from "../../api/apiHandler"
 
 export default class CardMyDemands extends Component {
@@ -36,11 +35,13 @@ export default class CardMyDemands extends Component {
       });
   };
 
-  dataChanged = () => {
-    console.log(JSON.stringify(this.state), JSON.stringify(this.props));
-    const {id_user, ...rest} = this.props
-    return JSON.stringify(this.state) !== JSON.stringify(rest)
-  }
+  
+
+  // dataChanged = () => {
+  //   console.log(JSON.stringify(this.state), JSON.stringify(this.props));
+  //   const {id_user, ...rest} = this.props
+  //   return JSON.stringify(this.state) !== JSON.stringify(rest)
+  // }
 
   render() {
     const {numOfChildren, numOfAnimals, tempAddress, tempCity, tempZipCode, additionalInformation, status, _id} = this.state
@@ -56,9 +57,10 @@ export default class CardMyDemands extends Component {
           <input type="text" onChange={this.handleChange} value={additionalInformation} name="additionalInformation"/>
           <input type="text" onChange={this.handleChange} value={status} name="status"/>
         </form>
-            
-            <Button disabled={this.dataChanged()} handleClick={this.handleSubmit}>Save</Button>
-            <Button>Delete</Button>
+        {/* disabled={this.dataChanged()} */}
+
+            <Button  handleClick={this.handleSubmit}>Save</Button>
+            <Button handleClick={() => this.props.handleDelete(_id)}>Delete</Button>
       </div>
     )
   }
