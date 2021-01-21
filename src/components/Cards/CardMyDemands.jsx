@@ -1,14 +1,30 @@
 import React, { Component } from "react";
-import Button from "../Button";
 import "../../styles/cardInfos.css";
 import apiHandler from "../../api/apiHandler"
 import Checkbox from '@material-ui/core/Checkbox';
 import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
 import StatusChip from '../../components/StatusChip'
+import '../../styles/cardMyDemand.css'
+
+const styles = () => ({
+  root: {
+    minWidth: 275,
+  },
+  title: {
+    fontSize: 14,
+  },
+  pos: {
+    marginBottom: 12,
+  },
+});
 
 
-export default class CardMyDemands extends Component {
+ class CardMyDemands extends Component {
 
   state = {
     status: this.props.status,
@@ -19,6 +35,7 @@ export default class CardMyDemands extends Component {
     tempZipCode: this.props.tempZipCode,
     tempCity: this.props.tempCity,
     additionalInformation: this.props.additionalInformation,
+    searchNodes: ""
   }
 
   handleChange = (event) => {
@@ -41,7 +58,6 @@ export default class CardMyDemands extends Component {
   };
 
   
-
   // dataChanged = () => {
   //   console.log(JSON.stringify(this.state), JSON.stringify(this.props));
   //   const {id_user, ...rest} = this.props
@@ -50,11 +66,19 @@ export default class CardMyDemands extends Component {
 
   render() {
     const {numOfChildren, numOfAnimals, tempAddress, tempCity, tempZipCode, additionalInformation, status, _id} = this.state
+    const {classes} = this.props
     return (
+      <div className="one-card">
+      <Card className={classes.root} variant="outlined">
+        <CardContent>
       <div  className= "cardDemand">
+        <p>Your request cannot be modified. If you wish to update it, please delete it and send a new request <a href="/request">here</a> </p> 
         
-        <StatusChip status={status}/>
-        <form>
+          <div className="status">
+            <StatusChip status={status}/>
+          </div>
+        <form className= "form-request">
+          <div className="input-form">
         <TextField
           id="outlined-number"
           label="Number of children"
@@ -66,7 +90,11 @@ export default class CardMyDemands extends Component {
           variant="outlined"
           onChange={this.handleChange}
           name="numOfChildren"
+          fullWidth
         />
+        </div>
+        <br/>
+        <div className="input-form">
          <TextField
           id="outlined-number"
           label="Number of animals"
@@ -78,7 +106,11 @@ export default class CardMyDemands extends Component {
           variant="outlined"
           onChange={this.handleChange}
           name="numOfAnimals"
+          fullWidth
         />
+        </div>
+        <br/>
+        <div className="input-form">
         <TextField
           id="outlined-helperText"
           label="Address"
@@ -86,40 +118,61 @@ export default class CardMyDemands extends Component {
           variant="outlined"
           onChange={this.handleChange}
           name="tempAddress"
+          multiline
+          fullWidth
         />
+        </div>
+        <br/>
+        <div className="input-form">
         <TextField
           id="outlined-helperText"
           label="Zipcode"
           value={tempZipCode}
           variant="outlined"
           name="tempZipCode"
+          multiline
+          fullWidth
         />
+        </div>
+        <br/>
+        <div className="input-form">
         <TextField
           id="outlined-helperText"
           label="City"
           value={tempCity}
           variant="outlined"
           name="tempCity"
+          multiline
+          fullWidth
         />
+        </div>
+        <br/>
+        <div className="input-form">
          <TextField
           id="outlined-helperText"
           label="Information"
           value={additionalInformation}
-          
+          multiline
+          fullWidth
           variant="outlined"
           name="additionalInformation"
         />
-          
+        </div>
         </form>
+        </div>
+        
+        </CardContent>
+        <CardActions>
+            <Button variant="contained" color="secondary" onClick={() => this.props.handleDelete(_id)}>Delete request</Button>
+            </CardActions>
+        
         {/* disabled={this.dataChanged()} */}
-
-            <Button  handleClick={this.handleSubmit}>Save</Button>
-            <Button handleClick={() => this.props.handleDelete(_id)}>Delete</Button>
+      </Card>
       </div>
     )
   }
 }
 
- 
+export default withStyles(styles)(CardMyDemands) 
 
 
