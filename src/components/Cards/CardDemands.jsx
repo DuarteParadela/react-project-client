@@ -10,6 +10,8 @@ import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import CancelIcon from '@material-ui/icons/Cancel';
 import ErrorIcon from '@material-ui/icons/Error';
 import BlockIcon from '@material-ui/icons/Block';
+import StatusChip from "../../components/StatusChip"
+import "../../styles/cardDemands.css"
 import ReactDOM from 'react-dom'
 import "../../styles/cardInfos.css";
 
@@ -70,6 +72,9 @@ const CardDemands = ({
   
 }) => {
   const classes = useStyles();
+  const {address, zipCode, city, id_user} = id_home || {}
+  const {firstName:homeFirstName} = id_user || {}
+  console.log(id_user);
   const getIcon = (status) => {
     switch (status) {
       case 'pending':
@@ -85,15 +90,10 @@ const CardDemands = ({
   return (
     <Card className={classes.root} variant="outlined">
       <CardContent>
-      <Chip
-        icon={getIcon(status.toLowerCase())}
-        label={status}
-        variant="outlined"
-        className={classes[status.toLowerCase()]}
-      />
-        {/* <Typography className={classes.title} color="textSecondary" gutterBottom>
-          {status}
-        </Typography> */}
+      <div className={"card-container"}>
+        <div className={"left-column"}>
+      <StatusChip status={status}/>
+       
         <Typography variant="h5" component="h2">
           {firstName} {lastName}
         </Typography>
@@ -115,6 +115,23 @@ const CardDemands = ({
         <br />
         Additional information : {additionalInformation}
         </Typography>
+        </div>
+        <div>
+        <Typography variant="h5" component="h2">
+          Assigned Safe Home:  
+        </Typography>  
+        <Typography variant="body2" component="p">
+        Address: {address}
+        <br />
+        ZipCode: {zipCode}
+        <br />
+        City: {city}
+        <br />
+        Owner: {homeFirstName}
+        </Typography>
+        </div>
+      </div>
+        
       </CardContent>
       <CardActions>
         <Button size="small"><a href="/safehomes">Assign a home</a></Button>
@@ -124,32 +141,6 @@ const CardDemands = ({
       </CardActions>
     </Card>
 
-    // <div className="cardDemand">
-    //     <div className={`status card-${status.toLowerCase() || ""}`}><p>{status}</p></div>
-    //     <ul>
-    //       <li>Name: {firstName}</li>
-    //       <li>Last Name: {lastName}</li>
-    //       <li>Phone number: {phoneNumber}</li>
-    //       <li>Email: {email}</li>
-    //       <li>Age: {age}</li>
-    //       <li>Number of children: {numOfChildren}</li>
-    //       <li>Number of animals: {numOfAnimals}</li>
-    //       <li>Currently at : {tempAddress}, {tempZipCode}, {tempCity}</li>
-    //       <li>Additional information: {additionalInformation}</li>
-    //     </ul>
-            
-
-    //     <div className="buttons">
-    //     <Button variant="outlined" color="primary">
-    //         <a href="/safehomes">Select a safe home</a>
-    //       </Button>
-        
-        // {status !== 'Closed' ? <Button  onClick={() => handleChangeStatus(_id, 'Closed', id_home)}>Close</Button> : null}
-        // {status !== 'Rejected' ?  <Button variant="contained" color="secondary" onClick={() => handleChangeStatus(_id, 'Rejected', id_home)}>Reject</Button> : null}
-        // {status !== 'Pending' ? <Button variant="outlined" color="primary" onClick={() => handleChangeStatus(_id, 'Pending', id_home)}>Re-open</Button> : null}
-        
-    //     </div>
-    //   </div>
   );
 };
 

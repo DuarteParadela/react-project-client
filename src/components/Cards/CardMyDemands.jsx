@@ -2,6 +2,11 @@ import React, { Component } from "react";
 import Button from "../Button";
 import "../../styles/cardInfos.css";
 import apiHandler from "../../api/apiHandler"
+import Checkbox from '@material-ui/core/Checkbox';
+import TextField from '@material-ui/core/TextField';
+import { makeStyles } from '@material-ui/core/styles';
+import StatusChip from '../../components/StatusChip'
+
 
 export default class CardMyDemands extends Component {
 
@@ -48,14 +53,63 @@ export default class CardMyDemands extends Component {
     return (
       <div  className= "cardDemand">
         
+        <StatusChip status={status}/>
         <form>
-          <input type="number" onChange={this.handleChange} value={numOfChildren}  name="numOfChildren"/>
-          <input type="number" onChange={this.handleChange} value={numOfAnimals} name="numOfAnimals"/>
-          <input type="text" onChange={this.handleChange} value={tempAddress} name="tempAddress"/>
-          <input type="text" onChange={this.handleChange} value={tempCity} name="tempCity"/>
-          <input type="text" onChange={this.handleChange} value={tempZipCode} name="tempZipCode"/>
-          <input type="text" onChange={this.handleChange} value={additionalInformation} name="additionalInformation"/>
-          <input type="text" onChange={this.handleChange} value={status} name="status"/>
+        <TextField
+          id="outlined-number"
+          label="Number of children"
+          type="number"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          value={numOfChildren}
+          variant="outlined"
+          onChange={this.handleChange}
+          name="numOfChildren"
+        />
+         <TextField
+          id="outlined-number"
+          label="Number of animals"
+          type="number"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          value={numOfAnimals}
+          variant="outlined"
+          onChange={this.handleChange}
+          name="numOfAnimals"
+        />
+        <TextField
+          id="outlined-helperText"
+          label="Address"
+          value={tempAddress}
+          variant="outlined"
+          onChange={this.handleChange}
+          name="tempAddress"
+        />
+        <TextField
+          id="outlined-helperText"
+          label="Zipcode"
+          value={tempZipCode}
+          variant="outlined"
+          name="tempZipCode"
+        />
+        <TextField
+          id="outlined-helperText"
+          label="City"
+          value={tempCity}
+          variant="outlined"
+          name="tempCity"
+        />
+         <TextField
+          id="outlined-helperText"
+          label="Information"
+          value={additionalInformation}
+          
+          variant="outlined"
+          name="additionalInformation"
+        />
+          
         </form>
         {/* disabled={this.dataChanged()} */}
 

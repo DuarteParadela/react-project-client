@@ -1,0 +1,8 @@
+.card-container {
+  display: flex;
+}
+
+.left-column {
+  flex-direction: column;
+  width: 50%;
+}
