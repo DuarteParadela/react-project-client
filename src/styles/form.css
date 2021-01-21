@@ -3,28 +3,19 @@ $lightGray: #eff1f6; */
 
 .form-section {
   background: white;
-  max-width: 550px;
+  max-width: 700px;
   margin: 3vh auto 0;
   padding: 0 20px;
   max-height: 75vh;
 }
 
-.form-section .round-image {
-  height: 250px;
-  width: 250px;
-  border-radius: 100%;
-  overflow: hidden;
-  margin: 0 auto 20px;
-}
-
-.form-section .round-image img {
-  object-fit: cover;
-  height: 100%;
-  object-position: center;
-}
-
 .form-section .header {
   text-align: center;
+}
+
+.header {
+  color: #005a09;
+  font-family: Spectral;
 }
 
 .form {
@@ -32,6 +23,12 @@ $lightGray: #eff1f6; */
   padding: 30px;
   border-radius: 20px;
   box-shadow: rgba(16, 35, 82, 0.02) 0 7px 50px 20px;
+}
+
+.form p {
+  text-align: center;
+  color: #005a09;
+  font-weight: 700;
 }
 
 .form .title {
@@ -78,7 +75,7 @@ $lightGray: #eff1f6; */
 
 .form button {
   margin-top: 30px;
-  background: #5663ff;
+  background: #e28277;
   width: 100%;
   color: white;
   padding: 16px 0;

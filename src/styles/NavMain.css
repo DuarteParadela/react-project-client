@@ -10,7 +10,16 @@
   height: 70px;
 }
 
+.logo-green {
+  color: #005a09;
+}
+
+.logo-peach {
+  color: #e28277;
+}
+
 .NavMain .logo {
+  font-family: Spectral;
   font-size: 2.2rem;
   font-weight: 600;
   margin: 1.2rem;
@@ -26,10 +35,16 @@
 }
 
 .NavMain li {
+  font-family: Spectral;
   cursor: pointer;
   font-size: 1.2rem;
   margin: 0 1.5rem;
   font-weight: 600;
+}
+
+.NavMain li:hover {
+  text-decoration: underline #e28277;
+  color: #e28277;
 }
 
 .NavMain li svg {

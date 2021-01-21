@@ -204,8 +204,8 @@ class CardMyHome extends Component {
         </form>
         </CardContent>
         <CardActions>
-        <Button onClick={this.handleSubmit}>Save</Button>
-        <Button variant="contained" color="secondary" onClick={() => this.props.handleDelete(_id)}>Delete</Button>
+        <Button variant="contained" color="primary" onClick={this.handleSubmit}>Save</Button>
+        <Button variant="outlined" color="secondary" onClick={() => this.props.handleDelete(_id)}>Delete</Button>
         </CardActions>
             </Card>
       </div>

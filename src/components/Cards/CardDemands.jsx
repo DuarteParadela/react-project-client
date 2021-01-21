@@ -5,17 +5,26 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Chip from '@material-ui/core/Chip';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import CancelIcon from '@material-ui/icons/Cancel';
 import ErrorIcon from '@material-ui/icons/Error';
 import BlockIcon from '@material-ui/icons/Block';
 import StatusChip from "../../components/StatusChip"
 import "../../styles/cardDemands.css"
-import ReactDOM from 'react-dom'
 import "../../styles/cardInfos.css";
 
-
+const dayjs = require("dayjs");
+require("dayjs/locale/en");
+var advancedFormat = require("dayjs/plugin/advancedFormat");
+var LocalizedFormat = require("dayjs/plugin/localizedFormat");
+var utc = require("dayjs/plugin/utc");
+var timezone = require("dayjs/plugin/timezone");
+dayjs.extend(utc);
+dayjs.extend(timezone);
+dayjs.extend(advancedFormat);
+dayjs.extend(LocalizedFormat);
+var relativeTime = require("dayjs/plugin/relativeTime");
+dayjs.extend(relativeTime);
 
 const useStyles = makeStyles({
   root: {
@@ -104,7 +113,7 @@ const CardDemands = ({
         <br />
         Email: {email}
         <br />
-        {age} years old
+        {dayjs(`${age}`).fromNow(true)} old
         <br />
         {numOfChildren} children
         <br />

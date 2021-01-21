@@ -1,4 +1,5 @@
 import React,  { useState } from "react";
+import { makeStyles } from '@material-ui/core/styles';
 import "../../styles/cardInfos.css";
 import  "../../styles/cardHomes.css";
 import Card from '@material-ui/core/Card';
@@ -6,8 +7,25 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import FormHelperText from '@material-ui/core/FormHelperText';
 
-const styles = () => ({
+const dayjs = require("dayjs");
+require("dayjs/locale/en");
+var advancedFormat = require("dayjs/plugin/advancedFormat");
+var LocalizedFormat = require("dayjs/plugin/localizedFormat");
+var utc = require("dayjs/plugin/utc");
+var timezone = require("dayjs/plugin/timezone");
+dayjs.extend(utc);
+dayjs.extend(timezone);
+dayjs.extend(advancedFormat);
+dayjs.extend(LocalizedFormat);
+var relativeTime = require("dayjs/plugin/relativeTime");
+dayjs.extend(relativeTime);
+
+const useStyles = makeStyles ({
   root: {
     minWidth: 275,
     marginBottom: 20,
@@ -21,7 +39,11 @@ const styles = () => ({
   },
   deleteBtn: {
     marginLeft: 10
-  }
+  },
+  formControl: {
+    minWidth: 120,
+  },
+  
 });
 
 const CardHomes = ({
@@ -50,7 +72,7 @@ const CardHomes = ({
  
   const [isSelectShown, toggleIsSelectShown] = useState(false)
   const [selectValue, setSelectValue] = useState()
-  const classes = styles();
+  const classes = useStyles();
   
  const hideSelect = () => {
    toggleIsSelectShown(false)
@@ -68,8 +90,8 @@ const CardHomes = ({
   return (
     <Card className={classes.root} variant="outlined">
       <CardContent>
-        <Typography className={classes.title} color="textSecondary" gutterBottom>
-          {firstName} {lastName.toUpperCase()}, {age} years old
+        <Typography className={classes.title, "owner-info"} color="textSecondary" gutterBottom>
+          {firstName} {lastName.toUpperCase()}, {dayjs(`${age}`).fromNow(true)} old
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
           {city}, {address}, {zipCode}
@@ -83,45 +105,29 @@ const CardHomes = ({
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" variant="contained" color="primary" onClick={assignRequest}>Assign request</Button>
+        <Button size="small" variant="contained" color="primary" onClick={() => toggleIsSelectShown(true) }>Assign request</Button>
+        {isSelectShown && (
+          <>
+            <FormControl className={classes.formControl}>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={selectValue}
+              onChange={handleChangeDemand}
+            >
+              {demands.map((demand) => {
+                  return <MenuItem key={demand._id} value={demand._id}>{demand.id_user.firstName} {demand.id_user.lastName}</MenuItem>
+                })}
+            </Select>
+            <FormHelperText>Select Request</FormHelperText>
+          </FormControl>
+              <Button onClick={assignRequest}>Confirm</Button>
+              <Button onClick={hideSelect}>Cancel</Button>
+              </>
+          )}
       </CardActions>
     </Card>
-    // <div  className={`cardHomes`}>
-        
-    //         <p>Name: {firstName}</p>
-    //         <p>Last Name: {lastName}</p>
-    //         <p>Phone number: {phoneNumber}</p>
-    //         <p>Email: {email}</p>
-    //         <p>Age: {age}</p>
-    //         <p>Accepts children: {acceptsChildren ? "true" : "false"}</p>
-    //         <p>Accepts animals: {acceptsAnimals ? "true" : "false"}</p>
-    //         <p>Address : {address}</p>
-    //         <p>City: {city}</p>
-    //         <p>Zipcode: {zipCode}</p>
-    //         <p>Size: {size}</p>
-    //         <p>Number of rooms: {numOfRooms}</p>
-    //         <p>Is available:{isAvailable ? "true" : "false"}</p>
-      
-    //     <div className="buttons">
-    //     <Button handleClick={() => toggleIsSelectShown(true) } primary>
-    //         Assign request
-    //       </Button>
-    //       {isSelectShown && (
-    //         <>
-    //           <select value={selectValue} onChange={handleChangeDemand} name="pets" id="pet-select">
-    //             <option value="">--Select request--</option>
-    //             {demands.map((demand) => {
-    //               return <option key={demand._id} value={demand._id}>{demand.id_user.firstName} {demand.id_user.lastName}</option>
-    //             })}
-                
-    //           </select>
-    //           <Button handleClick={assignRequest}>Confirm</Button>
-    //           <Button handleClick={hideSelect}>Cancel</Button>
-    //         </>
-    //       )}
-
-    //     </div>
-    //   </div>
+    
   );
 };
 

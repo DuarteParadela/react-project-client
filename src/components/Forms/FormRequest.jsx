@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { Link, Redirect, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import UserContext from "../Auth/UserContext";
-import  withUser from "../Auth/withUser"
 import apiHandler from "../../api/apiHandler";
 import "../../styles/form.css";
 
@@ -43,11 +42,11 @@ class FormRequest extends Component {
     return (
       <section className="form-section">
         <header className="header">
-          <h1>We are here for you</h1>
+          <h1>We are here to help</h1>
         </header>
 
         <form autoComplete="off" className="form" onSubmit={this.handleSubmit}>
-          <p>We need some additional information first</p>
+          <p>We just need some additional information before calling you</p>
 
           
           <div className="form-group">
@@ -68,7 +67,7 @@ class FormRequest extends Component {
           <div className="form-group">
             
             <label className="label" htmlFor="animals">
-            How many animals are with you?
+            How many pets are with you?
             </label>
             <input
               onChange={this.handleChange}
@@ -123,7 +122,7 @@ class FormRequest extends Component {
           
           <div className="form-group">
             <label className="label" htmlFor="adiInformation">
-            Any additionnal information ?
+            <p>Any additionnal information ?</p>
             </label>
             <input
               onChange={this.handleChange}
