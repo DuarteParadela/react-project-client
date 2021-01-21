@@ -14,6 +14,8 @@ import '../../styles/cardMyDemand.css'
 const styles = () => ({
   root: {
     minWidth: 275,
+    marginBottom: 20,
+    boxShadow: '0 1px 5px rgba(0, 0, 0, 0.2)'
   },
   title: {
     fontSize: 14,
@@ -21,6 +23,9 @@ const styles = () => ({
   pos: {
     marginBottom: 12,
   },
+  deleteBtn: {
+    marginLeft: 10
+  }
 });
 
 
@@ -163,7 +168,7 @@ const styles = () => ({
         
         </CardContent>
         <CardActions>
-            <Button variant="contained" color="secondary" onClick={() => this.props.handleDelete(_id)}>Delete request</Button>
+            <Button className={classes.deleteBtn} variant="contained" color="secondary" onClick={() => this.props.handleDelete(_id)}>Delete request</Button>
             </CardActions>
         
         {/* disabled={this.dataChanged()} */}

@@ -2,6 +2,7 @@ import React,  { useState } from "react";
 import Button from "../Button";
 import "../../styles/cardInfos.css";
 import  "../../styles/cardHomes.css"
+import { DataGrid } from '@material-ui/data-grid';
 
 const CardHomes = ({
   id_user: {
@@ -28,7 +29,46 @@ const CardHomes = ({
 }) => {
   const [isSelectShown, toggleIsSelectShown] = useState(false)
   const [selectValue, setSelectValue] = useState()
+  const columns = [
+    { field: 'UserFirstName', headerName: 'First name', width: 130 },
+    { field: 'UserlastName', headerName: 'Last name', width: 130 },
+    {
+      field: 'email',
+      headerName: 'Email',
+      type: 'text',
+      width: 90,
+    },
+    {
+      field: 'address',
+      headerName: 'Address',
+      width: 160,
+    },
+    {
+      field: 'city',
+      headerName: 'City',
+      width: 90,
+    },
+    {
+      field: 'zipCode',
+      headerName: 'Zipcode',
+      width: 120,
+    },
+  ];
   
+  const rows = [
+    { id: 1, UserFirstName: {firstName}, UserlastName: {lastName}, Email: {email} },
+    // { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
+    // { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
+    // { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
+    // { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
+    // { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
+    // { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
+    // { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
+    // { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
+  ];
+
+ 
+  console.log(firstName);
  const hideSelect = () => {
    toggleIsSelectShown(false)
  }
@@ -44,7 +84,9 @@ const CardHomes = ({
 
   return (
     <div  className={`cardHomes`}>
-        
+        <div style={{ height: 400, width: '100%' }}>
+      <DataGrid rows={rows} columns={columns} pageSize={5} checkboxSelection />
+    </div>
             <p>Name: {firstName}</p>
             <p>Last Name: {lastName}</p>
             <p>Phone number: {phoneNumber}</p>
