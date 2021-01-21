@@ -74,7 +74,6 @@ const CardDemands = ({
   const classes = useStyles();
   const {address, zipCode, city, id_user} = id_home || {}
   const {firstName:homeFirstName} = id_user || {}
-  console.log(id_user);
   const getIcon = (status) => {
     switch (status) {
       case 'pending':

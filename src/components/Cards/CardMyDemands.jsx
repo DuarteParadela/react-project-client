@@ -55,19 +55,12 @@ const styles = () => ({
     apiHandler
       .updateDemand(this.state._id, {...this.state} )
       .then((data) => {
-        // this.props.history.push("/myrequests")// update the context
+
       })
       .catch((error) => {
         console.log(error);
       });
   };
-
-  
-  // dataChanged = () => {
-  //   console.log(JSON.stringify(this.state), JSON.stringify(this.props));
-  //   const {id_user, ...rest} = this.props
-  //   return JSON.stringify(this.state) !== JSON.stringify(rest)
-  // }
 
   render() {
     const {numOfChildren, numOfAnimals, tempAddress, tempCity, tempZipCode, additionalInformation, status, _id} = this.state
