@@ -46,9 +46,7 @@ class FormRequest extends Component {
         </header>
 
         <form autoComplete="off" className="form" onSubmit={this.handleSubmit}>
-          <p>We just need some additional information before calling you</p>
-
-          
+          <p className="form-title">We just need some additional information before calling you</p>
           <div className="form-group">
             
             <label className="label" htmlFor="children">

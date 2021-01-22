@@ -48,9 +48,6 @@ class FormSignin extends Component {
         <header className="header">
           <h1>
             Welcome back
-            <span role="img" aria-label="hand">
-              👋
-            </span>
           </h1>
         </header>
 

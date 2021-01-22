@@ -42,9 +42,6 @@ class FormSignup extends Component {
         <header className="header">
           <h1>
             Hello
-            <span role="img" aria-label="hand">
-              👋
-            </span>
           </h1>
         </header>
 

@@ -14,7 +14,7 @@ $lightGray: #eff1f6; */
 }
 
 .header {
-  color: #005a09;
+  color: #003605;
   font-family: Spectral;
 }
 
@@ -27,12 +27,16 @@ $lightGray: #eff1f6; */
 
 .form p {
   text-align: center;
-  color: #005a09;
+  color: #003605;
   font-weight: 700;
 }
 
 .form .title {
   margin: 10px 0;
+}
+
+.form-title {
+  margin-bottom: 10px;
 }
 
 .form-group .input {

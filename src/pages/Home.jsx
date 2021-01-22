@@ -60,7 +60,7 @@ export default function Home() {
                 3. We accompany you all the way           
               </p>
               <p>
-                Once you are settled in your <i>safe home</i>, we will stay in touch to make sure everything is ok
+                Once you are settled in your <i>safe home</i>, we will stay in touch to make sure everything is ok and plan the future
               </p>
             </div>
           </Grid>
@@ -73,7 +73,7 @@ export default function Home() {
         <div className="text-wrapper">
           <p className="main-title peach">I want to help !</p>
           <p>
-            I have an extra bedroom, a tiny house in my garden and I want it to put it at good use ?<br/>
+            You have an extra bedroom and you want to put it for good use ?<br/>
       Just reach out and we’ll put you in contact with someone who needs it.
           </p> 
           <NavLink to="/becomesafehome">OFFER MY HELP</NavLink>

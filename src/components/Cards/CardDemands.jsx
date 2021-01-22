@@ -75,14 +75,13 @@ const CardDemands = ({
   additionalInformation,
   status,
   _id,
-  image,
-  context,
+
   handleChangeStatus
   
 }) => {
   const classes = useStyles();
   const {address, zipCode, city, id_user} = id_home || {}
-  const {firstName:homeFirstName} = id_user || {}
+  const {firstName:homeFirstName, lastName:homeLastName, phoneNumber:homePhoneNumber, email:homeEmail} = id_user || {}
   const getIcon = (status) => {
     switch (status) {
       case 'pending':
@@ -135,7 +134,11 @@ const CardDemands = ({
         <br />
         City: {city}
         <br />
-        Owner: {homeFirstName}
+        Owner: {homeFirstName} {homeLastName}
+        <br />
+        Phone number: {homePhoneNumber}
+        <br />
+        Email: {homeEmail}
         </Typography>
         </div>
       </div>

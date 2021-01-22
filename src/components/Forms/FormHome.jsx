@@ -2,7 +2,11 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import UserContext from "../Auth/UserContext";
 import apiHandler from "../../api/apiHandler";
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+
 import "../../styles/form.css";
+
 
 class FormRequest extends Component {
   static contextType = UserContext;
@@ -24,9 +28,16 @@ class FormRequest extends Component {
     this.setState({ [key]: value });
   };
 
+  handleCheckbox = (event) => {
+    const value = event.target.checked
+    const key = event.target.name
+    this.setState({[key]: value})
+  }
+
   handleSubmit = (event) => {
     event.preventDefault();
 
+  
     apiHandler
       .createHome(this.state)
       .then(() => {
@@ -46,11 +57,8 @@ class FormRequest extends Component {
         </header>
 
         <form autoComplete="off" className="form" onSubmit={this.handleSubmit}>
-          <p>We need some additional information first</p>
-
-          
           <div className="form-group">
-            <h2>Where do you live</h2>
+            <p>Where do you live</p>
             <label className="label" htmlFor="address">
               Address
             </label>
@@ -117,46 +125,31 @@ class FormRequest extends Component {
           </div>
 
           <div className="form-group">
-            <h2>Children and Animals</h2>
-            
-              
-            
-            <input
-              onChange={({ target: { name } }) => {
-                this.handleChange({target: { name, value: !this.state.acceptsChildren}})
-              }}
-              value={this.state.acceptsChildren}
-              className="input"
-              id="checkboxChildren"
-              type="checkbox"
-              name="acceptsChildren"
-              required
-              />
-              
-              <label className="label" htmlFor="acceptsChildren">I can welcome children</label>
-            
-
+            <p>Children and Animals</p>
+            <FormControlLabel
+        control={
+        <Checkbox
+            checked={this.state.acceptsChildren}
+            onChange={this.handleCheckbox}
+            name="acceptsChildren"
+            color="primary"
+          />
+        }
+        label="I can welcome Children"
+        />
+        <br/>
+        <FormControlLabel
+        control={
+          <Checkbox
+          checked={this.state.acceptsAnimals}
+          onChange={this.handleCheckbox}
+          name="acceptsAnimals"
+          color="primary"
+        />
+        }
+        label="I can welcome Animals"
+        />
           </div>
-
-          <div className="form-group">
-          
-            <input
-              onChange={({ target: { name } }) => {
-                this.handleChange({target: { name, value: !this.state.acceptsAnimals}})
-              }}
-              value={this.state.acceptsAnimals}
-              className="input"
-              id="checkboxAnimals"
-              type="checkbox"
-              name="acceptsAnimals"
-              required
-            />
-            <label className="label" htmlFor="acceptsAnimals">I can welcome animals</label>
-           
-           
-          </div>
-
-
           <div className="form-group">
             <label className="label" htmlFor="adiInformation">
             Any additionnal information ?
@@ -169,10 +162,8 @@ class FormRequest extends Component {
               type="text"
               name="AdditionalInformation"
               placeholder="Special needs, regular visits, etc"
-              
             />
           </div>
-
           <button className="btn-submit">Send</button>
         </form>
 

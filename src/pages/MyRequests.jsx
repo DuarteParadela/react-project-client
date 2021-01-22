@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import apiHandler from '../api/apiHandler';
-import CardMyDemands from '../components/Cards/CardMyDemands'
+import CardDemands from '../components/Cards/CardMyDemands'
 
 import "../styles/adminDashboard.css"
 
@@ -36,7 +36,7 @@ class MyDemands extends Component {
             <div className= "cardsContainer">
             <div className="container">
                 {demands.map((demand) => {
-                    return <CardMyDemands key={demand._id} handleDelete={this.handleDelete} {...demand} />
+                    return <CardDemands key={demand._id} handleDelete={this.handleDelete} {...demand} />
                 })}
             </div> 
         </div>

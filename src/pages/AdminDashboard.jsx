@@ -40,6 +40,7 @@ class AdminDashboard extends Component {
     }
     render() {
         const { demands } = this.state;
+        console.log(demands)
         
         return (
             <div className= "cardsContainer">

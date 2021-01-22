@@ -12,7 +12,7 @@
 }
 
 .home-page .banner .text-container {
-  background-color: #005a09;
+  background-color: #003605;
   padding: 40px;
 }
 
@@ -85,7 +85,7 @@
 /* Section Help */
 
 .help-wrapper {
-  background: #005a09;
+  background: #003605;
   position: relative;
 }
 
@@ -176,7 +176,7 @@ p.main-title {
 }
 
 p.main-title.green {
-  color: #005a09;
+  color: #003605;
   max-width: 670px;
   margin: 0 auto;
   text-align: center;
